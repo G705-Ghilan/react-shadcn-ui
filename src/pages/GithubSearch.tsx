@@ -3,8 +3,10 @@ import { Button } from "@/components/ui/button"
 import { Field } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Spinner } from "@/components/ui/spinner"
+import { TooltipTrigger, Tooltip, TooltipContent } from "@/components/ui/tooltip"
 import PageLayout from "@/custom_components/PageLayout"
 import { Search, Star } from "lucide-react"
+
 import { useState, type SyntheticEvent } from "react"
 
 
@@ -19,7 +21,8 @@ interface RepoItem {
     stargazers_count: number
     owner: {
         avatar_url: string,
-        type: string
+        type: string,
+        login: string
     }
 }
 
@@ -71,7 +74,7 @@ export default function GithubSearchPage() {
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value.toString())}
                             type="text"
-                           
+
                             required
                         ></Input>
                         <Button type="submit" disabled={isLoading}>
@@ -98,16 +101,32 @@ function RepoSearchResult({ state }: { state: RepoSearchState }) {
         case "loading":
             return <div className="flex  flex-col items-center gap-4 text-sm font-mono text-muted-foreground"><Spinner></Spinner>Searching ...</div>
         case "success":
-            return <div className="flex flex-col gap-2 ">
-                <span className="text-sm text-muted-foreground mb-1">
+            return <div className="flex flex-col gap-3 ">
+                <span className="text-sm text-muted-foreground ">
                     {state.value.total_count.toLocaleString()} repositories found</span>
                 {state.value.items.map((repo) => {
-                    return <a target="_blank" href={repo.html_url} className="border flex flex-col gap-2 p-4 rounded-xl transition-colors duration-100 hover:bg-muted" key={repo.id}>
+                    return <a target="_blank" href={repo.html_url} className="border border-muted-foreground/25 flex flex-col gap-2 p-4 rounded-xl transition-colors duration-100 hover:bg-muted" key={repo.id}>
                         {/* Header */}
                         <div className="flex items-center gap-2">
-                            <img
-                                src={repo.owner.avatar_url + 'fsf'}
-                                className="size-4 bg-muted rounded-full" />
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <img
+                                        src={repo.owner.avatar_url}
+                                        className="size-4 bg-muted rounded-full" />
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                   <div className="flex gap-3 p-1">
+                                     <img
+                                        src={repo.owner.avatar_url}
+                                        className="size-10 bg-muted rounded-[8px] border border-amber-50/25" />
+                                    <div className="flex flex-col">
+                                        <p className="text-sm">{repo.owner.login}</p>
+                                        <p className="text-sm text-muted-foreground">{repo.owner.type}</p>
+                                    </div>
+                                   </div>
+                                </TooltipContent>
+                            </Tooltip>
+
                             <span className="text-sm w-full">{repo.full_name}</span>
                             {!(repo.owner.type === 'User') && <Badge variant='secondary'>{repo.owner.type}</Badge>}
                         </div>

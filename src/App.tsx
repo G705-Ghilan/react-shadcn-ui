@@ -17,13 +17,13 @@ const navData = [
       {
         label: "Home",
         icon: <Home />,
-        path: "/",
+        path: "/react-shadcn-ui/",
         page: <HomePage />,
       },
       {
         label: "Github Search",
         icon: <Search />,
-        path: "/github-search",
+        path: "/react-shadcn-ui/github-search",
         page: <GithubSearchPage />
       },
       {
@@ -32,17 +32,17 @@ const navData = [
         collapsibleActions: [
           {
             label: "Buttons",
-            path: "/components/buttons",
+            path: "/react-shadcn-ui/components/buttons",
             page: <PageLayout title="Buttons"/>
           },
           {
             label: "Dialogs",
-            path: "/components/dialogs",
+            path: "/react-shadcn-ui/components/dialogs",
             page: <PageLayout title="Dialogs"/>
           },
           {
             label: "Lists",
-            path: "/components/lists",
+            path: "/react-shadcn-ui/components/lists",
              page: <PageLayout title="Lists"/>
           },
         ]
@@ -57,7 +57,7 @@ export default function App() {
   useEffect(() => {
     setTheme(mode)
   }, [mode])
-  return <div className=" font-mono">
+  return <div className="">
 
     <SidebarProvider>
       <Sidebar collapsible="icon">
@@ -95,7 +95,7 @@ export default function App() {
                           <CollapsibleContent>
                             <SidebarMenuSub>
                               {collapsibleActions.map(({ label, path }) => <SidebarMenuSubItem>
-                                <NavLink to={path} key={path}>
+                                <NavLink to={path} key={path} end>
                                   {({ isActive }) => <SidebarMenuSubButton isActive={isActive}><span>{label}</span></SidebarMenuSubButton>}
                                 </NavLink>
 
@@ -108,8 +108,8 @@ export default function App() {
                       }
 
                       // One item
-                      return <SidebarMenuItem key={path}>
-                        <NavLink to={path}>
+                      return <SidebarMenuItem key={path} >
+                        <NavLink to={path} end>
                           {({ isActive }) => <SidebarMenuButton isActive={isActive}>{icon}<span>{label}</span></SidebarMenuButton>}
                         </NavLink>
                       </SidebarMenuItem>
