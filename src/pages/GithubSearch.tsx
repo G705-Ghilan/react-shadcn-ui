@@ -146,6 +146,6 @@ function RepoSearchResult({ state }: { state: RepoSearchState }) {
                 })}
             </div>
         case "failure":
-            return <div className="text-destructive font-mono text-sm">state.message</div>
+            return <div className="text-destructive font-mono text-sm text-center">{state.message}</div>
     }
 }

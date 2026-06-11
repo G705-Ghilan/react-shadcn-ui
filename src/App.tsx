@@ -1,4 +1,4 @@
-import { ChevronRight, Home, LucideEqualApproximately, Monitor, Moon, Search, Sun } from "lucide-react";
+import { ChevronRight, Home, ListTodo, LucideEqualApproximately, Monitor, Moon, Search, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavLink, Route, Routes } from "react-router";
 import profileImage from './assets/profile.jpeg';
@@ -9,6 +9,8 @@ import setTheme from "./functions/setTheme";
 import GithubSearchPage from "./pages/GithubSearch";
 import HomePage from "./pages/Home";
 import PageLayout from "./custom_components/PageLayout";
+import { TodoPage } from "./pages/Todo";
+
 
 const navData = [
   {
@@ -19,6 +21,12 @@ const navData = [
         icon: <Home />,
         path: "/react-shadcn-ui/",
         page: <HomePage />,
+      },
+      {
+        label: "Todo",
+        icon: <ListTodo />,
+        path: "/react-shadcn-ui/todo",
+        page: <TodoPage />,
       },
       {
         label: "Github Search",
@@ -33,17 +41,17 @@ const navData = [
           {
             label: "Buttons",
             path: "/react-shadcn-ui/components/buttons",
-            page: <PageLayout title="Buttons"/>
+            page: <PageLayout title="Buttons" />
           },
           {
             label: "Dialogs",
             path: "/react-shadcn-ui/components/dialogs",
-            page: <PageLayout title="Dialogs"/>
+            page: <PageLayout title="Dialogs" />
           },
           {
             label: "Lists",
             path: "/react-shadcn-ui/components/lists",
-             page: <PageLayout title="Lists"/>
+            page: <PageLayout title="Lists" />
           },
         ]
       }
