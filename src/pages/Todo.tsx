@@ -14,7 +14,7 @@ export function TodoPage() {
     let dispatch = useTasksDispatch()
 
     return <PageLayout title={"Todo"}>
-        <div className="max-w-3xl  mx-auto">
+        <div className="max-w-3xl  mx-auto p-3">
             <TaskInput onSubmitTask={
                 (value) => dispatch({
                     type: 'new-task',
@@ -77,7 +77,7 @@ function TaskItem({ task }: { task: TodoTaskItem }) {
                 ></Checkbox>
 
                 {!isEditing && <FieldLabel
-                    className={"font-light " + (task.isCompleted ? "text-muted-foreground transition-colors" : "")}
+                    className={"font-light line-clamp-3 " + (task.isCompleted ? "text-muted-foreground transition-colors" : "")}
                     htmlFor={checkboxId}>
                     {task.name}
                 </FieldLabel>}
