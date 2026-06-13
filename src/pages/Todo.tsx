@@ -13,7 +13,10 @@ import { useState } from "react";
 export function TodoPage() {
     let dispatch = useTasksDispatch()
 
-    return <PageLayout title={"Todo"}>
+    return <PageLayout
+        title="Todo"
+        // subtitle="Manage All your todo tasks in one place"
+    >
         <div className="max-w-3xl  mx-auto p-3">
             <TaskInput onSubmitTask={
                 (value) => dispatch({
