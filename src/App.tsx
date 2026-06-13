@@ -1,14 +1,14 @@
-import { ChevronRight, Code2Icon, Home, ListTodo, LucideEqualApproximately, Monitor, Moon, Search, Sun } from "lucide-react";
+import { ChevronRight, Home, ListTodo, LucideEqualApproximately, Monitor, Moon, Search, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavLink, Route, Routes } from "react-router";
 import profileImage from './assets/profile.jpeg';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./components/ui/collapsible";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "./components/ui/dropdown-menu";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarInset, SidebarMenu, SidebarMenuBadge, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, SidebarProvider } from "./components/ui/sidebar";
+import PageLayout from "./custom_components/PageLayout";
 import setTheme from "./functions/setTheme";
 import GithubSearchPage from "./pages/GithubSearch";
 import HomePage from "./pages/Home";
-import PageLayout from "./custom_components/PageLayout";
 import { TodoPage } from "./pages/Todo";
 
 

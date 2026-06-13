@@ -8,7 +8,7 @@ import PageLayout from "@/custom_components/PageLayout"
 import { useQuery } from "@tanstack/react-query"
 import { ChevronLeftIcon, ChevronRightIcon, Search, Star } from "lucide-react"
 
-import { useState, type ReactNode } from "react"
+import { useEffect, useState, type ReactNode } from "react"
 
 
 
@@ -38,10 +38,7 @@ export default function GithubSearchPage() {
     let [query, setQuery] = useState("")
     let [page, setPage] = useState(1)
 
-    const goToPage = (pageIndex: number) => {
-        setPage(pageIndex)
-        window.scrollTo({ top: 0, behavior: "smooth", })
-    }
+
     const { error, isLoading, data } = useQuery<RepoSearchResult>({
         queryKey: ['search', query, page],
         retry: false,
@@ -50,9 +47,14 @@ export default function GithubSearchPage() {
             let res = await fetch(`https://api.github.com/search/repositories?q=${query}&page=${page}`)
             console.log(res.status)
             if (res.status !== 200) throw Error("error no data valid: es.json()");
+            console.log(res.status)
             return res.json()
         }
     })
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth", })
+    }, [page])
 
 
     return <PageLayout title="App Store Researcher">
@@ -87,27 +89,29 @@ export default function GithubSearchPage() {
 
             <div className="max-w-2xl w-full">
                 <RepoSearchResult data={data} isLoading={isLoading} error={error} >
+                    {/* Bottom navigation */}
                     <div className="flex gap-4  justify-center mt-4 ">
                         <Button
                             disabled={page === 1 || isLoading}
-                            onClick={() => goToPage(page - 1)}
+                            onClick={() => setPage(p => p - 1)}
                             variant='ghost'
                         >
                             <ChevronLeftIcon></ChevronLeftIcon>
-                            Prev {page-1}
+                            Prev {page > 1 ? (page - 1) : ''}
                         </Button>
 
                         <span className="text-xs flex items-center text-muted-foreground m-auto">
-                           Page: {page}
+                            Current page
                         </span>
 
                         <Button
                             disabled={isLoading}
-                            onClick={() => goToPage(page + 1)}
-                            variant='ghost'
-                        >
-                            Next {page+1}
+                            onClick={() => setPage(p => p + 1)}
+                            variant='ghost'>
+
+                            Next {page + 1}
                             <ChevronRightIcon></ChevronRightIcon>
+
                         </Button>
                     </div>
                 </RepoSearchResult>

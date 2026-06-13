@@ -51,8 +51,8 @@ const defaultTodos: TodoTaskItem[] = [
     },
     {
         id: crypto.randomUUID(),
-        name: "Learn handling api responses",
-        isCompleted: false
+        name: "Learn handling api responses (TanStack Query)",
+        isCompleted: true
     },
     {
         id: crypto.randomUUID(),
