@@ -1,4 +1,4 @@
-import { ChevronRight, Home, ListTodo, LucideEqualApproximately, Monitor, Moon, Search, Sun } from "lucide-react";
+import { ChevronRight, Code2Icon, Home, ListTodo, LucideEqualApproximately, Monitor, Moon, Search, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavLink, Route, Routes } from "react-router";
 import profileImage from './assets/profile.jpeg';
